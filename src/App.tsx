@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
+import MarketInfoProvider from './components/MarketInfoProvider';
+import MainLayout from './components/MainLayout';
+import Header from './components/Header';
+import SideBar from './components/SideBar';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      css={{
+        height: '100%',
+        margin: '0',
+      }}
+      className="App"
+    >
+      <MarketInfoProvider>
+        <MainLayout
+          main={<Outlet />}
+          top={<Header />}
+          side={<SideBar />}
+        ></MainLayout>
+      </MarketInfoProvider>
     </div>
   );
 }
